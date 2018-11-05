@@ -63,18 +63,18 @@ define("forum/login", [], function() {
 							window.location.href = pathname + "?" + qs;
 						},
 						error: function(data) {
-              if (data.status === 403 && data.responseText === 'Forbidden') {
-							  window.location.href = config.relative_path + '/login?error=csrf-invalid';
+							if (data.status === 403 && data.responseText === 'Forbidden') {
+								window.location.href = config.relative_path + '/login?error=csrf-invalid';
 							} else {
-                displayError(data.responseText);
-              }
+								displayError(data.responseText);
+							}
 						}
 					});
 				};
 
 				// Authenticate with vlms server
 				$.ajax({
-					url: "http://api.vieted.net/user/api/login?referrer=forum",
+					url: "https://api.vieted.net/user/api/login?referrer=forum",
 					type: "POST",
 					dataType: "json",
 					data: {
@@ -94,8 +94,8 @@ define("forum/login", [], function() {
 							loginForum();
 						} else {
 							// Login failed
-              var responseText = "[[error:invalid-login-credentials]]";
-              displayError(responseText);
+							var responseText = "[[error:invalid-login-credentials]]";
+							displayError(responseText);
 						}
 					},
 					error: function(xhr, textStatus, errorThrown) {
