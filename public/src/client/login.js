@@ -72,8 +72,6 @@ define("forum/login", [], function() {
 					});
 				};
 
-				loginForum();
-
 				// Authenticate with vlms server
 				$.ajax({
 					url: "https://api.vieted.net/user/api/login?referrer=forum",
