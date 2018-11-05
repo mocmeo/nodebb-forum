@@ -74,7 +74,7 @@ define("forum/login", [], function() {
 
 				// Authenticate with vlms server
 				$.ajax({
-					url: "http://vlms.local/user/login?referrer=forum",
+					url: "http://api.vieted.net/user/api/login?referrer=forum",
 					type: "POST",
 					dataType: "json",
 					data: {
@@ -85,7 +85,7 @@ define("forum/login", [], function() {
 						_sand_platform: 3,
 						_sand_readmin: 1,
 						_sand_is_wan: false,
-						_sand_domain: "ve"
+						_sand_domain: "seabank"
 					},
 					headers: {},
 					crossDomain: true,
