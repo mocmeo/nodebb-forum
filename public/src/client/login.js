@@ -49,10 +49,10 @@ define("forum/login", [], function() {
 						headers: {
 							"x-csrf-token": config.csrf_token
 						},
-						// beforeSubmit: function(data, $form, opts) {
-						// 	// set password data without displaying
-						// 	data[1].value = "forum@1234";
-						// },
+						beforeSubmit: function(data, $form, opts) {
+							// set password data without displaying
+							data[1].value = "forum@1234";
+						},
 						success: function(returnTo) {
 							var pathname = utils.urlToLocation(returnTo).pathname;
 
@@ -75,35 +75,35 @@ define("forum/login", [], function() {
 				loginForum();
 
 				// Authenticate with vlms server
-				// $.ajax({
-				// 	url: "https://api.vieted.net/user/api/login?referrer=forum",
-				// 	type: "POST",
-				// 	dataType: "json",
-				// 	data: {
-				// 		lname: $("#username").val(),
-				// 		pass: $("#password").val(),
-				// 		submit: "1",
-				// 		_sand_ajax: 1,
-				// 		_sand_platform: 3,
-				// 		_sand_readmin: 1,
-				// 		_sand_is_wan: false,
-				// 		_sand_domain: "seabank"
-				// 	},
-				// 	headers: {},
-				// 	crossDomain: true,
-				// 	success: function(data, textStatus, xhr) {
-				// 		if (data.success == true) {
-				// 			loginForum();
-				// 		} else {
-				// 			// Login failed
-				// 			var responseText = "[[error:invalid-login-credentials]]";
-				// 			displayError(responseText);
-				// 		}
-				// 	},
-				// 	error: function(xhr, textStatus, errorThrown) {
-				// 		console.log(errorThrown);
-				// 	}
-				// });
+				$.ajax({
+					url: "https://api.vieted.net/user/api/login?referrer=forum",
+					type: "POST",
+					dataType: "json",
+					data: {
+						lname: $("#username").val(),
+						pass: $("#password").val(),
+						submit: "1",
+						_sand_ajax: 1,
+						_sand_platform: 3,
+						_sand_readmin: 1,
+						_sand_is_wan: false,
+						_sand_domain: "seabank"
+					},
+					headers: {},
+					crossDomain: true,
+					success: function(data, textStatus, xhr) {
+						if (data.success == true) {
+							loginForum();
+						} else {
+							// Login failed
+							var responseText = "[[error:invalid-login-credentials]]";
+							displayError(responseText);
+						}
+					},
+					error: function(xhr, textStatus, errorThrown) {
+						console.log(errorThrown);
+					}
+				});
 			}
 		});
 
